@@ -1,28 +1,27 @@
 {
-  "name": "policast-backend",
+  "name": "polycast-backend",
   "version": "1.0.0",
-  "description": "Policast backend (Express + PostgreSQL + x402 stub)",
-  "main": "src/index.js",
+  "private": true,
   "type": "module",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "NODE_ENV=development nodemon src/index.js",
-    "migrate": "node -e \"import('./src/db.js').then(m=>m.runMigration())\""
+    "dev": "tsx watch src/index.ts",
+    "start": "node --enable-source-maps dist/index.js",
+    "build": "tsc -p tsconfig.json",
+    "migrate": "psql \"$DATABASE_URL\" -f migrations/001_init.sql"
   },
   "dependencies": {
+    "@solana/web3.js": "^1.95.3",
     "cors": "^2.8.5",
+    "dayjs": "^1.11.13",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "express-rate-limit": "^7.3.1",
     "helmet": "^7.1.0",
-    "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
-    "pg": "^8.13.1",
-    "tweetnacl": "^1.0.3",
-    "bs58": "^5.0.0",
-    "uuid": "^9.0.1"
+    "pg": "^8.12.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "nodemon": "^3.1.7"
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
   }
 }
